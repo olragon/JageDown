@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>PageDown Demo Page</title>
+        
+        <link rel="stylesheet" type="text/css" href="demo.css" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="../../Markdown.Converter.js"></script>
+        <script type="text/javascript" src="../../Markdown.Sanitizer.js"></script>
+        <script type="text/javascript" src="../../Markdown.Editor.js"></script>
+    </head>
+    
+    <body>
+        <textarea id="jagedown">
+This is the *first* editor.
+------------------------------
+
+Just plain **Markdown**, except that the input is sanitized:
+
+<marquee>I'm the ghost from the past!</marquee>
+</textarea>
+        
+        <br /> <br />
+        
+        <textarea id="another-jagedown">
+This is the *second* editor.
+------------------------------
+
+It has a plugin hook registered that surrounds all words starting with the
+letter A with asterisks before doing the Markdown conversion. Another one gives bare links
+a nicer link text. User input isn't sanitized here:
+
+<marquee>I'm the ghost from the past!</marquee>
+
+http://google.com
+
+http://stackoverflow.com
+
+It also includes a help button.
+</textarea>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // simple example
+                $("#jagedown").jagedown();
+
+                // advanced example
+                var help = { handler: function() { alert("Do you need help?"); }}
+                var options = {
+                    'delay': true,  // don't run editor now
+                    'help': help    // include help button
+                }
+                // jagedowns = [ jagedown1, jagedown2 ]
+                // jagedown = { editor: MarkdownEditor, converter: MarkdownConverter, element: element }
+                var jagedowns = $("#another-jagedown").jagedown(options);
+                for(var i=0; i<jagedowns.length; i++) {
+                    var jagedown = jagedowns[i];
+                    converter = jagedown.converter;
+                    editor = jagedown.editor;
+                    converter.hooks.chain("preConversion", function(text) {
+                        return text.replace(/\b(a\w*)/gi, "*$1*");
+                    });
+                    converter.hooks.chain("plainLinkText", function(url) {
+                        return "This is a link to " + url.replace(/^https?:\/\//, "");
+                    });
+                    editor.run();
+                }
+            });
+        </script>
+    </body>
+</html>
