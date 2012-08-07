@@ -20,9 +20,9 @@ JageDown modify file `Markdown.Editor.js`, so you can freedom use PageDown edito
     <head>
     <link rel="stylesheet" type="text/css" href="demo.css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="../../Markdown.Converter.js"></script>
-    <script type="text/javascript" src="../../Markdown.Sanitizer.js"></script>
-    <script type="text/javascript" src="../../Markdown.Editor.js"></script>
+    <script type="text/javascript" src="Markdown.Converter.js"></script>
+    <script type="text/javascript" src="Markdown.Sanitizer.js"></script>
+    <script type="text/javascript" src="Markdown.Editor.js"></script>
     <script>
     $("#jagedown").jagedown();
     </script>
@@ -43,8 +43,8 @@ JageDown modify file `Markdown.Editor.js`, so you can freedom use PageDown edito
     var jagedowns = $("#another-jagedown").jagedown(options);
     for(var i=0; i<jagedowns.length; i++) {
         var jagedown = jagedowns[i];
-        converter = jagedown.converter;
-        editor = jagedown.editor;
+        var converter = jagedown.converter;
+        var editor = jagedown.editor;
         converter.hooks.chain("preConversion", function(text) {
             return text.replace(/\b(a\w*)/gi, "*$1*");
         });
