@@ -275,7 +275,7 @@
     // Removes a listener callback from a DOM element which is fired on a specified
     // event.
     util.removeEvent = function (elem, event, listener) {
-        elem.unbind(event, listener);
+        $(elem).unbind(event, listener);
     };
 
     // Converts \r\n and \r to \n.
