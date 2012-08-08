@@ -2159,4 +2159,13 @@
 
         return (!settings.delay) ? chainable : editors;
     };
+    
+    $.fn.jagedown_remove = function() {
+      return this.each(function() {
+        var wrapper = $(this).parent('.wmd-panel');
+        $(this).unbind();
+        $('.wmd-preview', wrapper).remove();
+        $('.wmd-button-bar', wrapper).remove();
+      });
+    }
 })(jQuery);
