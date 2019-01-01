@@ -55,6 +55,6 @@ JageDown modify file `Markdown.Editor.js`, so you can freedom use PageDown edito
     }
 
 
-[0]: http://olragon.com/jagedown
-[1]: http://pagedown.googlecode.com
-[2]: http://jquery.com
+[0]: https://github.com/olragon/JageDown
+[1]: https://code.google.com/archive/p/pagedown
+[2]: https://jquery.com
